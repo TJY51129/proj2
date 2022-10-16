@@ -129,8 +129,14 @@ for (i in 1:3){
 
 # ------- Creating function for probabilities of 1 to 2n loop---------------------
 
-dloop <- function(n,nreps){
-  
+dloop <- function(n=100,nreps=10000){
+  p = rep(0,nreps)
+  for (i in 1:nreps){
+    for (i in 1:(2*n)){
+      p[i] = (factorial(100)/i)/factorial(100)
+    }
+    return(p)
+  }
 }
 
 # -------Estimating 100-vector of probabilities ---------------------
