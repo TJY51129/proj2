@@ -28,7 +28,7 @@ pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
     results = rep(0,ngreps)
     for(i in 1:ngreps){
       # A random permutation:
-      boxes = sample(1:2*n,2*n)
+      boxes = sample(1:(2*n),2*n)
       # Track the prisoners path
       path = c(k)
       tries = 1
@@ -46,11 +46,30 @@ pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
       }
     }
   }else if(strategy == 2){
-    
+    results = rep(0,ngreps)
+    for(i in 1:ngreps){
+      # A random permutation:
+      boxes = sample(1:(2*n),2*n)
+      # Track the prisoners path
+      path = c(k)
+      tries = 1
+      # Look first in the box that matches your own number
+      inBox = sample(boxes, 1)
+      while(tries < n){
+        path = c(path, inBox)
+        if(inBox == k){
+          break;
+        }else{
+          # Follow that number to the next box
+          inBox = boxes[inBox]
+        }
+        tries = tries+1 
+      }
+    }
   }else{
     for(i in 1:ngreps){
       # A random permutation:
-      boxes = sample(1:2*n,2*n)
+      boxes = sample(1:(2*n),2*n)
       # create a copy of the boxes object to 
       #keep an index of the opened boxes for
       #each prisoner
@@ -73,18 +92,20 @@ pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
         tries = tries+1
       }
     }
-    return(tries/nreps)
+    return(tries/2n)
   }
 }
 
 # ------- Creating function for joint probability of finding number---------------------
 
 pall <- function(n = 100, strategy, nreps){
-  prisoners = 1:2*n
-  foundIt = 0
-  for (prisoner in prisoners){
-    pone(n, prisoner, ngreps = 10000)
-    results[i] = foundIt
+  for(round in 1:nreps){
+    game  <- sapply(1:(2*n), function(k) Pone(n,k,srategy,1)) 
+    roundpardoned <- sum(game)
+    if (roundpardoned==(2*n){
+      allpardoned = allpardoned + 1 
+    }
+    results[i]=allpardoned
   }
   return(results)
 }
