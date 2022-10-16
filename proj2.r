@@ -23,6 +23,7 @@
 
 # ------- Creating function for individual probability of finding number---------------------
 
+pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
   if (strategy == 1){
     results = rep(0,ngreps)
     for(i in 1:ngreps){
