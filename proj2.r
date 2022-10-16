@@ -141,7 +141,7 @@ dloop <- function(n=100,nreps=10000){
 
 # -------Estimating 100-vector of probabilities ---------------------
 
-results <- dloop(100,10000)
+results <- dloop(50,10000)
 
 # -------Visualization of the probabilities ---------------------
 
