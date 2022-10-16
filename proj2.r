@@ -150,14 +150,13 @@ library(ggplot2)
 library(gridExtra)
 
 # set the variable values
-n=100
-nreps=1000
+n=50
+nreps=10000
 
-p <- ggplot(data.frame(model=rep("model",nreps),
-                        values=results)) +
-  aes(x=values) +
-  geom_histogram(stat="bin",binwidth=1,
-                 fill="lightblue",colour="blue",alpha=0.3) + 
-  labs(title="MODEL: Number of prisoners that succeeded the test",
-       x="Success event",
-       y="Frequency") 
+ggplot(data.frame(model=rep("pall",nreps),
+				  values=results)) +
+	aes(x=values) +
+	geom_density(aes(fill=as.factor(model),colour=as.factor(model)),alpha=0.3) + 
+	labs(title="Density plot of number of prisoners that succeeded retrieving their number",
+		x="Success event",
+		y="Density") 
