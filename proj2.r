@@ -92,7 +92,7 @@ pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
         tries = tries+1
       }
     }
-    return(tries/2n)
+    return(tries/2*n)
   }
 }
 
