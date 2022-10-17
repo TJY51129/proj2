@@ -76,10 +76,10 @@ pall <- function(n = 100, strategy, nreps){
 # ------- Estimate probabilities for n=5 and n=50---------------------
 
 for (i in 1:3){
-  pone(5,k,i,10000)
-  pone(50,k,i,10000)
-  pall(5,i,10000)
-  pall(50,i,10000)
+  pone(5, k, strategy[i], 10000)
+  pone(50, k, strategy[i], 10000)
+  pall(5, strategy[i], 10000)
+  pall(50, strategy[i], 10000)
 }
 
 # ------- Surprising findings of the probabilities---------------------
