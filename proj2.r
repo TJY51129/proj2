@@ -24,75 +24,38 @@
 # ------- Creating function for individual probability of finding number---------------------
 
 pone <- function(n = 100, k = 1, strategy, ngreps = 10000){
-  if (strategy == 1){
-    results = rep(0,ngreps)
-    for(i in 1:ngreps){
-      # A random permutation:
-      boxes = sample(1:(2*n),2*n)
-      # Track the prisoners path
-      path = c(k)
-      tries = 1
+  strategy = ["own_number", "first_random", "all_random"]
+  results = rep(0,ngreps)
+  for(i in 1:ngreps){
+    # A random permutation:
+    boxes = sample(1:(2*n),2*n)
+    # Track the prisoners path
+    path = c(k)
+    tries = 1
+    if (strategy = strategy[1]){
       # Look first in the box that matches your own number
       inBox = boxes[k]
-      while(tries < n){
-        path = c(path, inBox)
-        if(inBox == k){
-          break;
-        }else{
+    }else if (strategy = strategy[2,3]){
+      inBox = sample(boxes, 1)
+    }
+    while(tries < n){
+      path = c(path, inBox)
+      if(inBox == k){
+        break;
+      }else{
+        if (strategy = strategy[1,2]){
           # Follow that number to the next box
           inBox = boxes[inBox]
-        }
-        tries = tries+1 
-      }
-    }
-  }else if(strategy == 2){
-    results = rep(0,ngreps)
-    for(i in 1:ngreps){
-      # A random permutation:
-      boxes = sample(1:(2*n),2*n)
-      # Track the prisoners path
-      path = c(k)
-      tries = 1
-      # Look first in the box that matches your own number
-      inBox = sample(boxes, 1)
-      while(tries < n){
-        path = c(path, inBox)
-        if(inBox == k){
-          break;
-        }else{
-          # Follow that number to the next box
-          inBox = boxes[inBox]
-        }
-        tries = tries+1 
-      }
-    }
-  }else{
-    for(i in 1:ngreps){
-      # A random permutation:
-      boxes = sample(1:(2*n),2*n)
-      # create a copy of the boxes object to 
-      #keep an index of the opened boxes for
-      #each prisoner
-      boxes.temp <- boxes
-      #Track the prisoners path
-      path = c(k)
-      tries = 1
-      # find a box randomly
-      inBox = sample(boxes, 1)
-      while(tries < n){
-        path = c(path, inBox) 
-        if(inBox == k){
-          break; 	
-        }else{
+        }else if (strategy = strategy[3]){
           # delete the first box from the box pool
           boxes.temp <- boxes.temp[boxes.temp!=inBox]	
           # choose randomly among any of the remaining boxes
           inBox = sample(boxes.temp,1)
         }
-        tries = tries+1
       }
+      tries = tries+1 
     }
-    return(tries/2*n)
+    return(tries/(2*n))
   }
 }
 
