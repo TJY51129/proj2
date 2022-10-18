@@ -117,9 +117,9 @@ n=50
 nreps=10000
 
 ggplot(data.frame(model=rep("pall",nreps),
-				  values=results)) +
-	aes(x=values) +
-	geom_density(aes(fill=as.factor(model),colour=as.factor(model)),alpha=0.3) + 
-	labs(title="Density plot of number of prisoners that succeeded retrieving their number",
-		x="Success event",
-		y="Density") 
+                  values=results)) +
+    aes(y=values) +
+    geom_density(aes(fill=as.factor(model),colour=as.factor(model)),alpha=0.3) + 
+    labs(title="Density plot of number of prisoners that succeeded retrieving their number",
+         x="Loop Length",
+         y="Probability") 
